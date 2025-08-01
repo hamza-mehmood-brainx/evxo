@@ -1,5 +1,3 @@
-
-
 {% if section.blocks.size > 1 %}
   <script
     src="{{ 'announcement-bar.js' | asset_url }}"
@@ -23,7 +21,7 @@
   %}
 
   <announcement-bar-component
-    class="announcement-bar__slider"
+    class="announcement-bar__slider announcement-bar-custom"
     {% if autoplay == true %}
       autoplay="{{ section.settings.speed }}" aria-live="polite"
     {% endif %}
@@ -41,6 +39,10 @@
 {% stylesheet %}
   .announcement-bar {
     border-block-end: var(--border-bottom-width) solid var(--color-border);
+  }
+
+  .announcement-bar-custom .announcement-bar__slides .announcement-bar__text {
+    font-weight: 600;
   }
 
   .announcement-bar__slider {

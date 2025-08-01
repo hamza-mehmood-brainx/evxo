@@ -17,11 +17,11 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "Free delivery on $99",
             "link": "",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
+            "font_size": "1rem",
+            "weight": "600",
             "letter_spacing": "normal",
             "case": "none"
           },
@@ -35,7 +35,7 @@
       "settings": {
         "speed": 5,
         "section_width": "page-width",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
         "divider_width": 1,
         "padding-block-start": 15,
         "padding-block-end": 15
@@ -49,8 +49,8 @@
           "static": true,
           "settings": {
             "hide_logo_on_home_page": false,
-            "custom_height": 36,
-            "custom_height_mobile": 28,
+            "custom_height": 70,
+            "custom_height_mobile": 50,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -89,7 +89,7 @@
       },
       "settings": {
         "logo_position": "left",
-        "menu_position": "left",
+        "menu_position": "center",
         "menu_row": "top",
         "show_search": true,
         "search_position": "right",
