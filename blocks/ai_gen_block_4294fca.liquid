@@ -1,0 +1,657 @@
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-review-carousel-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+
+  .ai-review-carousel__container-{{ ai_gen_id }} {
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-review-carousel__track-{{ ai_gen_id }} {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: {{ block.settings.card_gap }}px;
+    max-width: 1300px
+  }
+
+  .ai-review-card-{{ ai_gen_id }} {
+    flex: 0 0 calc((100% - ({{ block.settings.cards_per_view_desktop | minus: 1 }} * {{ block.settings.card_gap }}px)) / {{ block.settings.cards_per_view_desktop }});
+    background-color: {{ block.settings.card_background_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    text-align: center;
+    padding-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .ai-review-card__image-wrapper-{{ ai_gen_id }} {
+
+    width: 100%;
+    height: 169px;
+    margin: 0 auto {{ block.settings.image_margin }}px;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .ai-review-card__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-review-card__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-review-card__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.5;
+  }
+  .star-img{
+    width: 88px;
+    height: 16px;
+  }
+
+  .ai-review-card__text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.5;
+    margin-bottom: {{ block.settings.text_margin }}px;
+    padding: 0 5px;
+  }
+
+  .ai-review-card__author-{{ ai_gen_id }} {
+    color: {{ block.settings.author_color }};
+    font-size: {{ block.settings.author_size }}px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ai-review-carousel__controls-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .ai-review-carousel__arrow-{{ ai_gen_id }} {
+    width: 40px;
+    height: 40px;
+    background-color: {{ block.settings.arrow_background_color }};
+    color: {{ block.settings.arrow_color }};
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .ai-review-carousel__arrow-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.arrow_hover_background_color }};
+    color: {{ block.settings.arrow_hover_color }};
+  }
+
+  .ai-review-carousel__arrow-{{ ai_gen_id }}:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .ai-review-carousel__arrow-{{ ai_gen_id }} svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-review-card-{{ ai_gen_id }} {
+      flex: 0 0 calc((100% - ({{ block.settings.cards_per_view_mobile | minus: 1 }} * {{ block.settings.card_gap }}px)) / {{ block.settings.cards_per_view_mobile }});
+    }
+  }
+{% endstyle %}
+
+<review-carousel-{{ ai_gen_id }}
+  class="ai-review-carousel-{{ ai_gen_id }}"
+  data-cards-desktop="{{ block.settings.cards_per_view_desktop }}"
+  data-cards-mobile="{{ block.settings.cards_per_view_mobile }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-review-carousel__container-{{ ai_gen_id }}">
+    <div class="ai-review-carousel__track-{{ ai_gen_id }}">
+      {% for i in (1..10) %}
+        {% liquid
+          assign review_text_key = 'review_text_' | append: i
+          assign author_name_key = 'author_name_' | append: i
+          assign author_image_key = 'author_image_' | append: i
+
+          assign review_text = block.settings[review_text_key]
+          assign author_name = block.settings[author_name_key]
+          assign author_image = block.settings[author_image_key]
+        %}
+
+        {% if review_text != blank or author_name != blank %}
+          <div class="ai-review-card-{{ ai_gen_id }}">
+            <div class="ai-review-card__image-wrapper-{{ ai_gen_id }}">
+              {% if author_image %}
+                <img
+                  src="{{ author_image | image_url: width: 200 }}"
+                  alt="{{ author_name | escape }}"
+                  class="ai-review-card__image-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                >
+              {% else %}
+                <div class="ai-review-card__image-placeholder-{{ ai_gen_id }}">
+                  {{ 'image' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+            <div class="star-img">
+              <img src="{{ 'starts.svg' | asset_url }}" alt="Stars Icon">
+            </div>
+
+            {% if review_text != blank %}
+              <div class="ai-review-card__text-{{ ai_gen_id }}">
+                {{ review_text }}
+              </div>
+            {% endif %}
+
+            {% if author_name != blank %}
+              <h3 class="ai-review-card__author-{{ ai_gen_id }}">
+                {{ author_name }}
+              </h3>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="ai-review-carousel__controls-{{ ai_gen_id }}">
+    <button
+      class="ai-review-carousel__arrow-{{ ai_gen_id }} ai-review-carousel__prev-{{ ai_gen_id }}"
+      aria-label="Previous reviews"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="15,18 9,12 15,6"></polyline>
+      </svg>
+    </button>
+    <button
+      class="ai-review-carousel__arrow-{{ ai_gen_id }} ai-review-carousel__next-{{ ai_gen_id }}"
+      aria-label="Next reviews"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9,18 15,12 9,6"></polyline>
+      </svg>
+    </button>
+  </div>
+</review-carousel-{{ ai_gen_id }}>
+<script>
+  (function() {
+    class ReviewCarousel{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentIndex = 0;
+        this.cardsDesktop = parseInt(this.dataset.cardsDesktop);
+        this.cardsMobile = parseInt(this.dataset.cardsMobile);
+      }
+
+      connectedCallback() {
+        this.track = this.querySelector('.ai-review-carousel__track-{{ ai_gen_id }}');
+        this.cards = this.querySelectorAll('.ai-review-card-{{ ai_gen_id }}');
+        this.prevButton = this.querySelector('.ai-review-carousel__prev-{{ ai_gen_id }}');
+        this.nextButton = this.querySelector('.ai-review-carousel__next-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+        this.updateCarousel();
+      }
+
+      setupEventListeners() {
+        this.prevButton.addEventListener('click', () => this.goToPrevious());
+        this.nextButton.addEventListener('click', () => this.goToNext());
+        window.addEventListener('resize', () => this.updateCarousel());
+      }
+
+      getCurrentCardsPerView() {
+        return window.innerWidth <= 749 ? this.cardsMobile : this.cardsDesktop;
+      }
+
+      getMaxIndex() {
+        const cardsPerView = this.getCurrentCardsPerView();
+        return Math.max(0, this.cards.length - cardsPerView);
+      }
+
+      goToPrevious() {
+        this.currentIndex = Math.max(0, this.currentIndex - 1);
+        this.updateCarousel();
+      }
+
+      goToNext() {
+        this.currentIndex = Math.min(this.getMaxIndex(), this.currentIndex + 1);
+        this.updateCarousel();
+      }
+
+      updateCarousel() {
+        if (!this.track || !this.cards.length) return;
+
+        const cardsPerView = this.getCurrentCardsPerView();
+        const maxIndex = this.getMaxIndex();
+        this.currentIndex = Math.min(this.currentIndex, maxIndex);
+
+        const cardWidth = this.cards[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(this.track).gap) || 0;
+        const translateX = this.currentIndex * (cardWidth + gap);
+
+        this.track.style.transform = `translateX(-${translateX}px)`;
+
+        this.prevButton.disabled = this.currentIndex === 0;
+        this.nextButton.disabled = this.currentIndex >= maxIndex;
+      }
+    }
+
+    customElements.define('review-carousel-{{ ai_gen_id }}', ReviewCarousel{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Review Carousel",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "cards_per_view_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Cards per view (desktop)",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "cards_per_view_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Cards per view (mobile)",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap between cards",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Card Style"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Carousel border radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Image Style"
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Image size",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "image_margin",
+      "min": 10,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Image bottom margin",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Text Style"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Review text color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Review text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_margin",
+      "min": 10,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Review text bottom margin",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "author_color",
+      "label": "Author name color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "author_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Author name size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Arrow Style"
+    },
+    {
+      "type": "color",
+      "id": "arrow_background_color",
+      "label": "Arrow background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background_color",
+      "label": "Arrow hover background color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_color",
+      "label": "Arrow hover color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Review1"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_1",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_1",
+      "label": "Review text",
+      "default": "This product exceeded my expectations. The quality is outstanding and delivery was fast."
+    },
+    {
+      "type": "text",
+      "id": "author_name_1",
+      "label": "Author name",
+      "default": "Sarah Johnson"
+    },
+    {
+      "type": "header",
+      "content": "Review 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_2",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_2",
+      "label": "Review text",
+      "default": "Amazing customer service and high-quality products. I will definitely order again."
+    },
+    {
+      "type": "text",
+      "id": "author_name_2",
+      "label": "Author name",
+      "default": "Michael Chen"
+    },
+    {
+      "type": "header",
+      "content": "Review 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_3",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_3",
+      "label": "Review text",
+      "default": "Perfect fit and exactly as described. The shopping experience was seamless."
+    },
+    {
+      "type": "text",
+      "id": "author_name_3",
+      "label": "Author name",
+      "default": "Emma Davis"
+    },
+    {
+      "type": "header",
+      "content": "Review 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_4",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_4",
+      "label": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "author_name_4",
+      "label": "Author name"
+    },
+    {
+      "type": "header",
+      "content": "Review 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_5",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_5",
+      "label": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "author_name_5",
+      "label": "Author name"
+    },
+    {
+      "type": "header",
+      "content": "Review 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_6",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_6",
+      "label": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "author_name_6",
+      "label": "Author name"
+    },
+    {
+      "type": "header",
+      "content": "Review 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_7",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_7",
+      "label": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "author_name_7",
+      "label": "Author name"
+    },
+    {
+      "type": "header",
+      "content": "Review 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_8",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_8",
+      "label": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "author_name_8",
+      "label": "Author name"
+    },
+    {
+      "type": "header",
+      "content": "Review 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_9",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_9",
+      "label": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "author_name_9",
+      "label": "Author name"
+    },
+    {
+      "type": "header",
+      "content": "Review 10"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image_10",
+      "label": "Author image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text_10",
+      "label": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "author_name_10",
+      "label": "Author name"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review Carousel"
+    }
+  ]
+}
+{% endschema %}

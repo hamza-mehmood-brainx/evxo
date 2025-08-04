@@ -1,12 +1,17 @@
 
 
-{% render 'text', block: block %}
+{% render 'text', block: block,  class: block.settings['custom-class'] %}
 
 {% schema %}
 {
   "name": "t:names.text",
   "tag": null,
   "settings": [
+     {
+      "type": "text",
+      "id": "custom-class",
+      "label": "Custom Classes"
+    },
     {
       "type": "richtext",
       "id": "text",

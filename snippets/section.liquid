@@ -2,12 +2,13 @@
   Renders a wrapper section
 
   @param {section} section - The section object
+  @param {class} class
   @param {string} children - The children of the section
 {%- enddoc -%}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
-  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} {{section.settings.custom_class}}"
 
   {% if request.visual_preview_mode %}
     data-shopify-visual-preview
