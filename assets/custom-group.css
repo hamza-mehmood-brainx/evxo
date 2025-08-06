@@ -40,6 +40,10 @@
   font-size: 40px;
 }
 
+.your-purchase-sec .button {
+  max-width: 160px;
+  font-size: 18px;
+}
 .video-sec .video-placeholder-wrapper {
   border-radius: 0 10px 10px 0;
 }
@@ -76,7 +80,6 @@
   padding: 0;
 }
 
-/* Heading moves to bottom */
 .single-collection .h3 {
   margin-top: auto;
   transition: margin 0.4s, transform 0.4s;
