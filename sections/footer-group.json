@@ -18,14 +18,14 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "custom-class": "",
+            "custom-class": "newsletter-heading",
             "text": "<h2>Subscribe to Our Newsletter</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
-            "type_preset": "h3",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -44,8 +44,8 @@
         "email_signup_haRih9": {
           "type": "email-signup",
           "settings": {
-            "width": "custom",
-            "custom_width": 50,
+            "width": "fill",
+            "custom_width": 100,
             "inherit_color_scheme": false,
             "color_scheme": "scheme-1",
             "border_style": "all",
@@ -111,7 +111,7 @@
               "settings": {
                 "icon": "price_tag",
                 "image_upload": "shopify://shop_images/Group_1000007101.svg",
-                "width": 130,
+                "width": 112,
                 "link": "",
                 "open_in_new_tab": false
               },
@@ -121,14 +121,14 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "custom-class": "",
+                "custom-class": "review-text-newsletter",
                 "text": "<p><strong>4.8/5.00 </strong>Based on 100+ Happy customer's</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h5",
+                "type_preset": "custom",
                 "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "font_size": "0.875rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
@@ -158,7 +158,7 @@
       ],
       "name": "t:names.email_signup",
       "settings": {
-        "custom_class": "",
+        "custom_class": "newsletter",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -186,26 +186,28 @@
         "padding-block-end": 40
       }
     },
+    "divider_hAEazz": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "section_width": "full-width",
+        "thickness": 0.5,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
-        "divider_hFm3am": {
-          "type": "_divider",
-          "name": "t:names.divider",
-          "settings": {
-            "thickness": 0.5,
-            "corner_radius": "square",
-            "width_percent": 100,
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          },
-          "blocks": {}
-        },
         "group_rXBHpw": {
           "type": "group",
           "name": "t:names.group",
           "settings": {
-            "custom-class": "footer",
+            "custom-class": "footer flex-wrap",
             "link": "",
             "open_in_new_tab": false,
             "content_direction": "row",
@@ -215,9 +217,9 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap": 10,
             "width": "fill",
-            "custom_width": 100,
+            "custom_width": 93,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
@@ -238,8 +240,8 @@
             "gradient_direction": "to top",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-start": 10,
+            "padding-inline-end": 10
           },
           "blocks": {
             "group_axFdMV": {
@@ -341,7 +343,7 @@
                     "link": "",
                     "open_in_new_tab": false,
                     "content_direction": "row",
-                    "vertical_on_mobile": true,
+                    "vertical_on_mobile": false,
                     "horizontal_alignment": "flex-start",
                     "vertical_alignment": "center",
                     "align_baseline": false,
@@ -745,7 +747,7 @@
             "vertical_alignment_flex_direction_column": "center",
             "gap": 0,
             "width": "fill",
-            "custom_width": 100,
+            "custom_width": 93,
             "width_mobile": "custom",
             "custom_width_mobile": 80,
             "height": "fit",
@@ -766,7 +768,7 @@
             "gradient_direction": "to top",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
+            "padding-inline-start": 10,
             "padding-inline-end": 0
           },
           "blocks": {
@@ -993,7 +995,6 @@
         }
       },
       "block_order": [
-        "divider_hFm3am",
         "group_rXBHpw",
         "divider_FPpcGT",
         "group_gqTMBC"
@@ -1008,19 +1009,20 @@
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 30,
-        "section_width": "page-width",
+        "section_width": "full-width",
         "section_height": "",
         "color_scheme": "scheme-2",
         "background_media": "none",
         "video_position": "cover",
         "background_image_position": "cover",
-        "padding-block-start": 0,
+        "padding-block-start": 35,
         "padding-block-end": 30
       }
     }
   },
   "order": [
     "section_wtRJVU",
+    "divider_hAEazz",
     "footer"
   ]
 }

@@ -1,4 +1,5 @@
 /* GENERAL CSS RULE */
+
 .italic {
   font-style: italic !important;
 }
@@ -14,27 +15,154 @@
   min-width: 200px;
 }
 
+.max-width-400 {
+  max-width: 400px;
+}
+
+.hide-on-desktop {
+  display: none !important;
+}
+
+.section-tittle p {
+  font-size: 36px !important;
+}
+
+.rating-wrapper .rating-count {
+  color: #093f3f99 !important;
+}
+
 /* Homepage */
 
-.your-purchase-second-group {
-  display: none;
-}
 .your-purchase-sec .purchase-heading {
-  max-width: 404px;
+  max-width: 410px;
 }
 .your-purchase-sec .purchase-heading p {
-  font-size: 46px;
+  font-size: 40px;
 }
 
 .video-sec .video-placeholder-wrapper {
   border-radius: 0 10px 10px 0;
 }
+
+.icon-section .section-content-wrapper {
+  flex-wrap: wrap;
+}
+
+/* COllection section */
+
+.single-collection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 320px;
+  max-width: 290px;
+  position: relative;
+  /* padding: 20px; */
+  transition: all 0.4s;
+}
+
+/* Hide content initially ( heading) */
+.single-collection .rte,
+.single-collection .link,
+.single-collection .overlay,
+.single-collection .icon-block {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(30px);
+  transition: opacity 0.4s, transform 0.4s;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Heading moves to bottom */
+.single-collection .h3 {
+  margin-top: auto;
+  transition: margin 0.4s, transform 0.4s;
+}
+
+.single-collection:hover {
+  justify-content: flex-start; /* Heading moves up */
+}
+
+.single-collection:hover .rte,
+.single-collection:hover .link,
+.single-collection:hover .icon-block,
+.single-collection:hover .overlay {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  height: auto;
+}
+
+.single-collection:hover .h3 {
+  transform: translateY(0);
+  margin-top: 0;
+}
+
+.single-collection .h3 p {
+  font-size: 26px;
+}
+
+.single-collection .rte {
+  font-size: 16px;
+}
+
+.single-collection .link {
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+.our-collection-wrapper .button,
+.blog-post-wrapper .button {
+  min-width: 290px;
+}
+
+.testimonial .review-wrapper .shopify-block {
+  width: 100%;
+}
+
 /* Footer CSS */
 .footer-logo-group .group-block-content .image-block {
   max-width: 150px;
 }
 
+.footer,
+.footer-bottom {
+  max-width: 1360px;
+}
+
+.newsletter .email-signup-block {
+  max-width: 427px;
+}
+
+@media screen and (max-width: 992px) {
+  .single-collection {
+    min-height: 280px;
+  }
+  .single-collection .h3 p {
+    font-size: 22px;
+  }
+
+  .single-collection .link {
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 767px) {
+  .home-hero .hero-sub-heading p {
+    font-size: 20px;
+  }
+  .section-tittle p {
+    font-size: 30px !important;
+  }
+
+  .hide-on-desktop {
+    display: block !important;
+  }
   .video-sec .video-placeholder-wrapper {
     border-radius: 10px 10px 0 0;
   }
@@ -42,7 +170,15 @@
   .introSection .section-content-wrapper {
     flex-direction: column-reverse;
   }
-
+  .introSection .video-content {
+    overflow: visible !important;
+  }
+  .introSection .intro-heading {
+    padding-top: 0;
+  }
+  .introSection .intro-heading p {
+    font-size: 26px;
+  }
   .faqSec .group-block-content .accordion {
     padding: 0;
   }
@@ -60,8 +196,29 @@
 
   .your-purchase-sec {
     background-color: #fff9e7;
+    margin-top: 10px;
+    padding-bottom: 0;
   }
 
+  .your-purchase-sec .button {
+    max-width: 160px;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .your-purchase-sec .text-block {
+    color: black;
+  }
+
+  .our-collection .group-block-content {
+    align-items: center;
+  }
+
+  .our-collection-wrapper .button,
+  .blog-post-wrapper .button {
+    min-width: 290px;
+  }
   .your-purchase-sec .purchase-heading p {
     font-size: 22px;
   }
@@ -69,17 +226,20 @@
     display: block;
   }
 
-  .testimonial {
-    display: none;
-  }
   /* Footer Sec */
 
+  .footer .footer-logo-group {
+    min-width: 40%;
+  }
+
+  .footer .footer-cat,
   .footer .footer-logo-group {
     display: none;
   }
 
-  .footer .footer-cat {
-    display: none;
+  .footer .footer-about,
+  .footer .footer-shipping {
+    min-width: 45%;
   }
 
   .newsletter-review .icon-block img {
