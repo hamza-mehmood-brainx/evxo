@@ -6,7 +6,15 @@
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
-    @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+      @font-face {
+        font-family: 'Source Sans Pro';
+        font-style: normal;
+        font-display: swap;
+        font-weight: 600;
+        src: url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-600-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/source-sans-pro@latest/latin-600-normal.woff) format('woff');
+        unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+       }
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
       .blogs .shopify-block{
          width: 100%
        }
@@ -87,6 +95,25 @@
          display: flex;
          flex-direction: column;
          flex-grow: 1;
+       }
+
+       .play-btn{
+        display: flex;
+        background-color: #FFF9E7;
+        padding: 5px 12px;
+        max-width: 126px;
+       font-family: 'Source Sans Pro';
+       align-items: center;
+       justify-content: space-between;
+       font-size: 15px;
+       text-transform: uppercase;
+       border-radius: 41px;
+       margin: 10px 0px;
+       pointer: cursor;
+       }
+
+       .play-btn .play-btn-txt{
+        color: #093F3F;
        }
 
        .ai-blog-post-card__title-{{ ai_gen_id }} {
@@ -204,7 +231,12 @@
                   {{ article.published_at | date: '%B %d, %Y' }}
                 </div>
               {% endif %}
-
+              {% if block.settings.show_play_btn %}
+                <div class="play-btn">
+                  <a href="{{ article.url }}" class="play-btn-txt">Play Listen</a>
+                  {{- 'play-icon.svg' | inline_asset_content -}}
+                </div>
+              {% endif %}
               <h3 class="ai-blog-post-card__title-{{ ai_gen_id }}">
                 <a href="{{ article.url }}" class="ai-blog-post-card__title-link-{{ ai_gen_id }}">
                   {{ article.title | escape }}
@@ -299,6 +331,13 @@
       "label": "Show publish date",
       "default": true
     },
+    {
+      "type": "checkbox",
+      "id": "show_play_btn",
+      "label": "Show Play Button",
+      "default": true
+    },
+
     {
       "type": "range",
       "id": "excerpt_length",

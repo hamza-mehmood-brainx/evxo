@@ -381,6 +381,18 @@
                       "name": "t:names.icon",
                       "settings": {
                         "icon": "price_tag",
+                        "image_upload": "shopify://shop_images/Mask_group_14.png",
+                        "width": 32,
+                        "link": "",
+                        "open_in_new_tab": false
+                      },
+                      "blocks": {}
+                    },
+                    "icon_y3EVhR": {
+                      "type": "icon",
+                      "name": "t:names.icon",
+                      "settings": {
+                        "icon": "price_tag",
                         "image_upload": "shopify://shop_images/Frame_403.svg",
                         "width": 32,
                         "link": "",
@@ -399,24 +411,12 @@
                         "open_in_new_tab": false
                       },
                       "blocks": {}
-                    },
-                    "icon_y3EVhR": {
-                      "type": "icon",
-                      "name": "t:names.icon",
-                      "settings": {
-                        "icon": "price_tag",
-                        "image_upload": "shopify://shop_images/Frame_403.svg",
-                        "width": 32,
-                        "link": "",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
                     }
                   },
                   "block_order": [
                     "icon_aVHXQN",
-                    "icon_hTdAnm",
-                    "icon_y3EVhR"
+                    "icon_y3EVhR",
+                    "icon_hTdAnm"
                   ]
                 }
               },

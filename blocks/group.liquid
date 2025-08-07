@@ -1,7 +1,6 @@
 {% capture children %}
   {% content_for 'blocks' %}
 {% endcapture %}
-{{ 'custom-group.css' | asset_url | stylesheet_tag }}
 
 {% render 'group',
   children: children,

@@ -60,7 +60,20 @@
       "
       data-testid="section-content"
     >
-      {{ children }}
+      {% if section.settings.enable_carousal %}
+        <div class="carousel-wrapper">
+          <div class="carousel-track">
+            {{ children }}
+          </div>
+
+          <div class="carousel-controls">
+            <button class="carousel-prev" aria-label="Previous">&larr;</button>
+            <button class="carousel-next" aria-label="Next">&rarr;</button>
+          </div>
+        </div>
+      {% else %}
+        {{ children }}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -94,4 +107,80 @@
   .custom-section-content {
     z-index: var(--layer-flat);
   }
+
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 20px; /* adjustable */
+    will-change: transform;
+  }
+
+  .carousel-card {
+    flex: 0 0 calc((100% - (2 * 20px)) / 4); /* 3 cards per view, adjust as needed */
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    background: #eee;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
 {% endstylesheet %}
+
+<script>
+  (() => {
+    const wrapper = document.querySelector('.carousel-wrapper');
+    if (!wrapper) return;
+
+    const track = wrapper.querySelector('.carousel-track');
+    const cards = wrapper.querySelectorAll('.carousel-card');
+    const prevBtn = wrapper.querySelector('.carousel-prev');
+    const nextBtn = wrapper.querySelector('.carousel-next');
+
+    let currentIndex = 0;
+    // const gap = 20; // same as CSS gap
+    const cardsPerView = window.innerWidth <= 767 ? 1 : 4;
+
+    const updateCarousel = () => {
+      const cardWidth = cards[0].offsetWidth;
+      const translateX = currentIndex * (cardWidth + gap);
+      track.style.transform = `translateX(-${translateX}px)`;
+
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex >= cards.length - cardsPerView;
+    };
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = Math.max(0, currentIndex - 1);
+      updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = Math.min(cards.length - cardsPerView, currentIndex + 1);
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', () => {
+      updateCarousel(); // responsive recalculation
+    });
+
+    // Initialize
+    updateCarousel();
+  })();
+</script>

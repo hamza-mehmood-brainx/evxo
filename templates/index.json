@@ -1214,7 +1214,7 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 0,
+                "gap": 10,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -1313,7 +1313,7 @@
         "text_xPM39J",
         "group_rrf44a"
       ],
-      "name": "t:names.custom_section",
+      "name": "Why Choose Us",
       "settings": {
         "custom_class": "",
         "content_direction": "column",
@@ -1803,7 +1803,7 @@
         "text_4dqFAY",
         "group_EhBHyG"
       ],
-      "name": "t:names.custom_section",
+      "name": "Testimonials",
       "settings": {
         "custom_class": "testimonial",
         "content_direction": "column",
@@ -2074,7 +2074,7 @@
       "block_order": [
         "group_rwTnXc"
       ],
-      "name": "t:names.custom_section",
+      "name": "CTA Banner",
       "settings": {
         "custom_class": "your-purchase-sec",
         "content_direction": "row",
@@ -2128,7 +2128,7 @@
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
-            "padding-block-start": 20,
+            "padding-block-start": 0,
             "padding-block-end": 20,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -2729,7 +2729,7 @@
         "group_tFMNxM",
         "button_XtkzXX"
       ],
-      "name": "t:names.custom_section",
+      "name": "Collections",
       "settings": {
         "custom_class": "our-collection-wrapper",
         "content_direction": "column",
@@ -2954,7 +2954,7 @@
         "group_cX3JFE",
         "group_NyFWpJ"
       ],
-      "name": "t:names.custom_section",
+      "name": "Intro Section",
       "settings": {
         "custom_class": "introSection",
         "content_direction": "row",
@@ -3115,7 +3115,7 @@
         "group_XrHCNV",
         "button_Kfd3ye"
       ],
-      "name": "t:names.custom_section",
+      "name": "Blogs",
       "settings": {
         "custom_class": "blog-post-wrapper",
         "content_direction": "column",
@@ -3180,7 +3180,7 @@
         "text_jagzGt"
       ],
       "disabled": true,
-      "name": "t:names.custom_section",
+      "name": "Reels",
       "settings": {
         "custom_class": "",
         "content_direction": "column",
