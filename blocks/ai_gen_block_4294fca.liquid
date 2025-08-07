@@ -125,7 +125,10 @@
     height: 20px;
   }
 
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 767px) {
+    .ai-review-carousel__controls-{{ ai_gen_id }}{
+       justify-content: center;
+    }
     .ai-review-card-{{ ai_gen_id }} {
       flex: 0 0 calc((100% - ({{ block.settings.cards_per_view_mobile | minus: 1 }} * {{ block.settings.card_gap }}px)) / {{ block.settings.cards_per_view_mobile }});
     }

@@ -1,5 +1,5 @@
 /* GENERAL CSS RULE */
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 .italic {
   font-style: italic !important;
 }
@@ -32,6 +32,10 @@
 }
 
 /* Homepage */
+.your-purchase-sec {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
 .your-purchase-sec .purchase-heading {
   max-width: 410px;
@@ -65,7 +69,6 @@
   transition: all 0.4s;
 }
 
-/* Hide content initially ( heading) */
 .single-collection .rte,
 .single-collection .link,
 .single-collection .overlay,
@@ -80,13 +83,13 @@
   padding: 0;
 }
 
-.single-collection .h3 {
+.single-collection .collection-heading {
   margin-top: auto;
   transition: margin 0.4s, transform 0.4s;
 }
 
 .single-collection:hover {
-  justify-content: flex-start; /* Heading moves up */
+  justify-content: flex-start;
 }
 
 .single-collection:hover .rte,
@@ -98,18 +101,18 @@
   transform: translateY(0);
   height: auto;
 }
-
-.single-collection:hover .h3 {
+.single-collection:hover .custom {
   transform: translateY(0);
   margin-top: 0;
 }
 
-.single-collection .h3 p {
-  font-size: 26px;
-}
-
 .single-collection .rte {
   font-size: 16px;
+}
+
+.single-collection:hover .collection-heading p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
 }
 
 .single-collection .link {
@@ -199,7 +202,8 @@
 
   .your-purchase-sec {
     background-color: #fff9e7;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding-bottom: 0;
   }
 
