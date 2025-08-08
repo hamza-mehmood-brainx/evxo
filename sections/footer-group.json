@@ -81,7 +81,7 @@
             "gap": 10,
             "width": "fit-content",
             "custom_width": 100,
-            "width_mobile": "fill",
+            "width_mobile": "fit-content",
             "custom_width_mobile": 100,
             "height": "fit",
             "custom_height": 100,
@@ -159,6 +159,7 @@
       "name": "t:names.email_signup",
       "settings": {
         "custom_class": "newsletter",
+        "enable_carousal": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
