@@ -1740,7 +1740,7 @@
           },
           "blocks": {
             "ai_gen_block_4294fca_UNeRde": {
-              "type": "ai_gen_block_4294fca",
+              "type": "review-carousal",
               "settings": {
                 "cards_per_view_desktop": 5,
                 "cards_per_view_mobile": 2,
