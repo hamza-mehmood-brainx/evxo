@@ -240,9 +240,9 @@
       "scheme-5": {
         "settings": {
           "background": "#75caf2",
-          "foreground_heading": "#ffffff",
+          "foreground_heading": "#093f3f",
           "foreground": "#4f4f4f",
-          "primary": "#ffffff",
+          "primary": "#333333",
           "primary_hover": "#ffffffb0",
           "border": "#ffffffb0",
           "shadow": "#000000",
